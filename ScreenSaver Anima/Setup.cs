@@ -60,7 +60,9 @@ namespace ScreenSaver_Anima
             catch
             {
                 WorkKey = WorkKey.OpenSubKey(@"Software");
-                WorkKey.CreateSubKey("Anima")
+                WorkKey.CreateSubKey("AnimaScreenSaver");
+                WorkKey = WorkKey.OpenSubKey("AnimaScreenSaver");
+                WorkKey.
             }
             return videos;
         }
