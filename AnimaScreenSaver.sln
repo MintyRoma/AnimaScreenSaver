@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoVideo Screensaver", "DemoVideo Screensaver\DemoVideo Screensaver.csproj", "{4A83B0B4-92C7-4896-ACF9-F39106EBA6FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimaScreenSaver", "ScreenSaver Anima\AnimaScreenSaver.csproj", "{D186D32A-53C8-40C8-A93E-7FC3347349D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4A83B0B4-92C7-4896-ACF9-F39106EBA6FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4A83B0B4-92C7-4896-ACF9-F39106EBA6FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4A83B0B4-92C7-4896-ACF9-F39106EBA6FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4A83B0B4-92C7-4896-ACF9-F39106EBA6FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D186D32A-53C8-40C8-A93E-7FC3347349D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D186D32A-53C8-40C8-A93E-7FC3347349D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D186D32A-53C8-40C8-A93E-7FC3347349D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D186D32A-53C8-40C8-A93E-7FC3347349D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
