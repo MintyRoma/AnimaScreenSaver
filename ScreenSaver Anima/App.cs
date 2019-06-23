@@ -21,7 +21,7 @@ namespace ScreenSaver_Anima
 
         public static void OnStart(string[] args)
         {
-            if (args.Length > 1 || args.Length == 0) mode = MODE.Setup;
+            if (args.Length > 1 || args.Length == 0) mode = MODE.Play;
             else if (args[0] == "/c") mode = MODE.Setup;
             else if (args[0] == "/p") mode = MODE.Demo;
             else mode = MODE.Play;
@@ -33,6 +33,10 @@ namespace ScreenSaver_Anima
             {
                 Setup st = new Setup();
                 st.Show();
+            }
+            if (mode == MODE.Play)
+            {
+                Player pl = new Player();
             }
         }
 

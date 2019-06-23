@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using WMPLib;
 using Microsoft.DirectX;
 using Microsoft.DirectX.AudioVideoPlayback;
-using
 using System.Windows.Forms;
 
 namespace ScreenSaver_Anima
@@ -18,7 +18,7 @@ namespace ScreenSaver_Anima
             Random rnd = new Random();
             int vid = rnd.Next(videos.Count) - 1;
             string playnow = videos[vid];
-            Video.FromFile(playnow);
+            PlayVideo = new Video(playnow, false); 
             foreach (var screen in Screen.AllScreens)
             {
                 Form frm = new Form();
@@ -26,6 +26,9 @@ namespace ScreenSaver_Anima
                 frm.Location = screen.WorkingArea.Location;
                 frm.TopMost = true;
                 frm.FormBorderStyle = FormBorderStyle.None;
+                PlayVideo.Owner = frm;
+                PlayVideo.Size = frm.Size;
+                PlayVideo.Play();
             }
         }
     }
