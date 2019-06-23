@@ -79,6 +79,7 @@
             this.BrowseVideo.TabIndex = 3;
             this.BrowseVideo.Text = "Добавить видео";
             this.BrowseVideo.UseVisualStyleBackColor = true;
+            this.BrowseVideo.Click += new System.EventHandler(this.BrowseVideo_Click);
             // 
             // DeleteVideo
             // 
@@ -154,6 +155,7 @@
             this.Name = "Setup";
             this.Text = "Setup";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Setup_FormClosing);
+            this.Load += new System.EventHandler(this.Setup_Load);
             ((System.ComponentModel.ISupportInitialize)(this.VolumeBar)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
