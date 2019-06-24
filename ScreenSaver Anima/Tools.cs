@@ -111,6 +111,23 @@ namespace ScreenSaver_Anima
             pathes = pathes.Substring(0, pathes.Length - 1);
             MainKey.SetValue("Play", pathes, RegistryValueKind.String);
         }
+
+        private static void WriteVolume()
+        {
+            RegistryKey MainKey = Registry.CurrentUser.OpenSubKey(@"Software\AnimaScreenSaver");
+            MainKey.DeleteValue("Volume");
+            MainKey.SetValue("Volume", volume, RegistryValueKind.DWord);
+        }
+
+        private static void WriteAllowKey()
+        {
+            RegistryKey MainKey = Registry.CurrentUser.OpenSubKey(@"Software\AnimaScreenSaver");
+            MainKey.DeleteValue("AllowKeys");
+            int data;
+            if (allowkeys == true) data = 1;
+            else data = 0;
+            MainKey.SetValue("AllowKeys", data);
+        }
         #endregion
 
         #region CheckRegistry
