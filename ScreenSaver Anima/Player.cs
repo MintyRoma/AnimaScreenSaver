@@ -33,6 +33,9 @@ namespace ScreenSaver_Anima
                 frm.Location = new Point(screen.Bounds.X,screen.Bounds.Y);
                 frm.BackColor = System.Drawing.Color.Black;
                 frm.FormBorderStyle = FormBorderStyle.None;
+                frm.MouseMove += Frm_MouseMove;
+                frm.KeyDown += Frm_MouseMove;
+                frm.FormClosing += Frm_MouseMove;
                 frm.TopMost = true;
                 PlayVideo.Size = frm.Size;
                 frm.Size = screen.Bounds.Size;
@@ -43,10 +46,11 @@ namespace ScreenSaver_Anima
             }
         }
 
-        private void FormClose()
+        private void Frm_MouseMove(object sender, EventArgs e)
         {
             Application.Exit();
         }
+
                
     }
 }
