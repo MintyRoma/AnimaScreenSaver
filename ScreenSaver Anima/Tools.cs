@@ -110,7 +110,8 @@ namespace ScreenSaver_Anima
             {
                 pathes += vids + "|";
             }
-            if (videos.Count!=0)pathes = pathes.Substring(0, pathes.Length - 1);
+            if (videos.Count != 0) pathes = pathes.Substring(0, pathes.Length - 1);
+            else pathes = "";
             MainKey.SetValue("Play", pathes, RegistryValueKind.String);
         }
 
