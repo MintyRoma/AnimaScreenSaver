@@ -13,39 +13,45 @@ namespace ScreenSaver_Anima
     class Player
     {
         List<string> videos = new List<string>();
-        Video PlayVideo;
         string playnow = "";
         WindowsMediaPlayer play = new WindowsMediaPlayer();
         Point CursosPosition = new Point();
         public Player()
+        {
+            Start();
+        }
+
+        private void Start()
         {
             Tools.GetData();
             videos = Tools.Videos;
             Random rnd = new Random();
             int vid = rnd.Next(videos.Count);
             string playnow = videos[vid];
-            PlayVideo = new Video(playnow, false); 
             foreach (Screen screen in Screen.AllScreens)
             {
+                Video PlayVideo;
+                PlayVideo = new Video(playnow, false);
                 Form frm = new Form();
                 PlayVideo.Owner = frm;
                 frm.Size = screen.Bounds.Size;
                 frm.StartPosition = FormStartPosition.Manual;
-                frm.Location = new Point(screen.Bounds.X,screen.Bounds.Y);
+                frm.Location = new Point(screen.Bounds.X, screen.Bounds.Y);
                 frm.BackColor = System.Drawing.Color.Black;
                 frm.FormBorderStyle = FormBorderStyle.None;
                 CursosPosition = Cursor.Position;
-                frm.MouseMove+= Frm_MouseMove;
+                frm.MouseMove += Frm_MouseMove;
                 frm.KeyDown += Frm_Close;
                 frm.FormClosing += Frm_Close;
                 frm.TopMost = true;
                 PlayVideo.Size = frm.Size;
                 frm.Size = screen.Bounds.Size;
-                PlayVideo.Audio.Volume = (Tools.Volume*100)-10000;
-                
+                PlayVideo.Audio.Volume = (Tools.Volume * 100) - 10000;
+
                 frm.Show();
                 Cursor.Hide();
                 PlayVideo.Play();
+
             }
         }
 
