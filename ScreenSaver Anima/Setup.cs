@@ -80,7 +80,7 @@ namespace ScreenSaver_Anima
         private void DeleteVideo_Click(object sender, EventArgs e)
         {
             string selecttext = VideoList.GetItemText(VideoList.SelectedItem);
-            VideoList.Remove(selecttext);
+            VideoList.Items.Remove(selecttext);
             vids.Remove(selecttext);
 
 
