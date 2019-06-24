@@ -29,6 +29,8 @@ namespace ScreenSaver_Anima
             allowkeys = allowkey;
             CheckReg();
             WriteVideoData();
+            WriteVolume();
+            WriteAllowKey();
         }
 
         #region ReadRegistry
