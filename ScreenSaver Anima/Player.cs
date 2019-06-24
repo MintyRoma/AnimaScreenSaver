@@ -19,8 +19,11 @@ namespace ScreenSaver_Anima
         Point CursosPosition = new Point();
         public Player()
         {
-            Start();
-            Play();
+            while (true)
+            {
+                Start();
+                Play();
+            }
         }
 
         private void Play()
@@ -29,6 +32,7 @@ namespace ScreenSaver_Anima
             {
                 vd.Play();
             }
+            while (vidsActual[0].Playing == true) continue;
         }
 
         private void Start()
@@ -62,6 +66,7 @@ namespace ScreenSaver_Anima
                 Cursor.Hide();
                 vidsActual.Add(PlayVideo);
             }
+            
         }
 
         private void Frm_Close(object sender, EventArgs e)
