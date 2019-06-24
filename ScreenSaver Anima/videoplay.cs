@@ -23,10 +23,16 @@ namespace ScreenSaver_Anima
 
         private void Start()
         {
-            String path = @"C:\Users\yan\Videos\savers\terminal.mp4";
+            string path = @"";
             Tools.GetData();
             videos = Tools.Videos;
+            Random rnd = new Random();
+            int index = rnd.Next(videos.Count);
+            path = videos[index];
+            
+
             bool screen1 = true;
+            bool play = true;
 
             foreach (Screen screen in Screen.AllScreens)
             {
@@ -35,8 +41,15 @@ namespace ScreenSaver_Anima
 
                 if (screen1)
                 {
+                    try
+                    {
                     video = null;
                     video = new Video(path);
+                    }
+                    catch
+                    {
+
+                    }
                 }
 
 
@@ -75,6 +88,10 @@ namespace ScreenSaver_Anima
                         }
                         video.Play();
                         frm.Show();
+                    }
+                    if (!play)
+                    {
+                        Application.Exit();
                     }
                 }
             }
