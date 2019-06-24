@@ -12,13 +12,13 @@ namespace ScreenSaver_Anima
 {
     public partial class Setup : Form
     {
-
+        int guiversion = 1;
         List<string> vids;
         public Setup()
         {
             InitializeComponent();
 #if DEBUG
-            BUILDLABEL.Text = "Build №" + App.BUILD;
+            BUILDLABEL.Text = "Build №" + App.BUILD+"\ngui №"+guiversion;
 #endif
             Tools.GetData();
             vids = Tools.Videos;
