@@ -13,12 +13,22 @@ namespace ScreenSaver_Anima
     class Player
     {
         List<string> videos = new List<string>();
+        List<Video> vidsActual = new List<Video>();
         string playnow = "";
         WindowsMediaPlayer play = new WindowsMediaPlayer();
         Point CursosPosition = new Point();
         public Player()
         {
             Start();
+            Play();
+        }
+
+        private void Play()
+        {
+            foreach(Video vd in vidsActual)
+            {
+                vd.Play();
+            }
         }
 
         private void Start()
@@ -43,15 +53,14 @@ namespace ScreenSaver_Anima
                 frm.MouseMove += Frm_MouseMove;
                 frm.KeyDown += Frm_Close;
                 frm.FormClosing += Frm_Close;
-                frm.TopMost = true;
+                //frm.TopMost = true;
                 PlayVideo.Size = frm.Size;
                 frm.Size = screen.Bounds.Size;
                 PlayVideo.Audio.Volume = (Tools.Volume * 100) - 10000;
 
                 frm.Show();
                 Cursor.Hide();
-                PlayVideo.Play();
-
+                vidsActual.Add(PlayVideo);
             }
         }
 
