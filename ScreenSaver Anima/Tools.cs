@@ -175,6 +175,7 @@ namespace ScreenSaver_Anima
         public static int Volume
         {
             get { return volume; }
+            set { volume = value; }
         }
         public static List<string> Videos
         {
@@ -183,6 +184,7 @@ namespace ScreenSaver_Anima
         public static bool AllowKeys
         {
             get { return allowkeys; }
+            set { allowkeys = value; }
         }
         
     }

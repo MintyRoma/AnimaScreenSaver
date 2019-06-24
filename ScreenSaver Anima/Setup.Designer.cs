@@ -35,9 +35,9 @@
             this.DeleteVideo = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.CancelBtn = new System.Windows.Forms.Button();
+            this.ConfirmBtn = new System.Windows.Forms.Button();
+            this.SaveBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.VolumeBar)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -114,41 +114,42 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Воспроизводимые видео";
             // 
-            // button1
+            // CancelBtn
             // 
-            this.button1.Location = new System.Drawing.Point(224, 369);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Отмена";
-            this.button1.UseVisualStyleBackColor = true;
+            this.CancelBtn.Location = new System.Drawing.Point(224, 369);
+            this.CancelBtn.Name = "CancelBtn";
+            this.CancelBtn.Size = new System.Drawing.Size(75, 23);
+            this.CancelBtn.TabIndex = 7;
+            this.CancelBtn.Text = "Отмена";
+            this.CancelBtn.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // ConfirmBtn
             // 
-            this.button2.Location = new System.Drawing.Point(136, 369);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(82, 23);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Принять";
-            this.button2.UseVisualStyleBackColor = true;
+            this.ConfirmBtn.Location = new System.Drawing.Point(136, 369);
+            this.ConfirmBtn.Name = "ConfirmBtn";
+            this.ConfirmBtn.Size = new System.Drawing.Size(82, 23);
+            this.ConfirmBtn.TabIndex = 7;
+            this.ConfirmBtn.Text = "Принять";
+            this.ConfirmBtn.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // SaveBtn
             // 
-            this.button3.Location = new System.Drawing.Point(48, 369);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(82, 23);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Сохранить";
-            this.button3.UseVisualStyleBackColor = true;
+            this.SaveBtn.Location = new System.Drawing.Point(48, 369);
+            this.SaveBtn.Name = "SaveBtn";
+            this.SaveBtn.Size = new System.Drawing.Size(82, 23);
+            this.SaveBtn.TabIndex = 7;
+            this.SaveBtn.Text = "Сохранить";
+            this.SaveBtn.UseVisualStyleBackColor = true;
+            this.SaveBtn.Click += new System.EventHandler(this.Button3_Click);
             // 
             // Setup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(311, 404);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.SaveBtn);
+            this.Controls.Add(this.ConfirmBtn);
+            this.Controls.Add(this.CancelBtn);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
@@ -174,8 +175,8 @@
         private System.Windows.Forms.Button DeleteVideo;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button CancelBtn;
+        private System.Windows.Forms.Button ConfirmBtn;
+        private System.Windows.Forms.Button SaveBtn;
     }
 }
