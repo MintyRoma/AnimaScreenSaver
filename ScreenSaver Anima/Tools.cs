@@ -103,27 +103,27 @@ namespace ScreenSaver_Anima
         /// </summary>
         private static void WriteVideoData()
         {
-            RegistryKey MainKey = Registry.CurrentUser.OpenSubKey(@"Software\AnimaScreenSaver");
+            RegistryKey MainKey = Registry.CurrentUser.OpenSubKey(@"Software\AnimaScreenSaver",true);
             MainKey.DeleteValue("Play");
             string pathes = "";
             foreach(string vids in videos)
             {
                 pathes += vids + "|";
             }
-            pathes = pathes.Substring(0, pathes.Length - 1);
+            if (videos.Count!=0)pathes = pathes.Substring(0, pathes.Length - 1);
             MainKey.SetValue("Play", pathes, RegistryValueKind.String);
         }
 
         private static void WriteVolume()
         {
-            RegistryKey MainKey = Registry.CurrentUser.OpenSubKey(@"Software\AnimaScreenSaver");
+            RegistryKey MainKey = Registry.CurrentUser.OpenSubKey(@"Software\AnimaScreenSaver",true);
             MainKey.DeleteValue("Volume");
             MainKey.SetValue("Volume", volume, RegistryValueKind.DWord);
         }
 
         private static void WriteAllowKey()
         {
-            RegistryKey MainKey = Registry.CurrentUser.OpenSubKey(@"Software\AnimaScreenSaver");
+            RegistryKey MainKey = Registry.CurrentUser.OpenSubKey(@"Software\AnimaScreenSaver",true);
             MainKey.DeleteValue("AllowKeys");
             int data;
             if (allowkeys == true) data = 1;

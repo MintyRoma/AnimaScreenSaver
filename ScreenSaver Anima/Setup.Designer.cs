@@ -51,6 +51,7 @@
             this.VolumeBar.Size = new System.Drawing.Size(271, 45);
             this.VolumeBar.TabIndex = 0;
             this.VolumeBar.TickFrequency = 10;
+            this.VolumeBar.Scroll += new System.EventHandler(this.VolumeBar_Scroll);
             // 
             // EnableVolumeControlCB
             // 
@@ -62,6 +63,7 @@
             this.EnableVolumeControlCB.Text = "Разрешить управление громкостью\r\nво время воспроизведения с помощью\r\nклавиш <Ввер" +
     "х> и <Вниз>";
             this.EnableVolumeControlCB.UseVisualStyleBackColor = true;
+            this.EnableVolumeControlCB.CheckedChanged += new System.EventHandler(this.EnableVolumeControlCB_CheckedChanged);
             // 
             // VideoList
             // 

@@ -57,7 +57,7 @@ namespace ScreenSaver_Anima
 
 
             fd.InitialDirectory = "C:\\";
-            fd.Filter = "video (*.MP4|*.M4V|*.avi|*.mov)|";
+            fd.Filter = "video (*.MP4/*.M4V/*.avi/*.mov)|";
             fd.FilterIndex = 2;
             fd.RestoreDirectory = true;
 
@@ -68,8 +68,13 @@ namespace ScreenSaver_Anima
                 
             }
 
-            vids.Add(filepath);
-            AddVideos();
+
+            if (!vids.Contains(filepath))
+            {
+                vids.Add(filepath);
+                AddVideos();
+            }
+            
         }
 
         private void Setup_Load(object sender, EventArgs e)
@@ -91,6 +96,16 @@ namespace ScreenSaver_Anima
         {
             Tools.SetData(vids, Tools.Volume, Tools.AllowKeys);
             Application.Exit();
+        }
+
+        private void VolumeBar_Scroll(object sender, EventArgs e)
+        {
+            Tools.Volume = VolumeBar.Value;
+        }
+
+        private void EnableVolumeControlCB_CheckedChanged(object sender, EventArgs e)
+        {
+            Tools.AllowKeys = EnableVolumeControlCB.Checked;
         }
     }
 } 
