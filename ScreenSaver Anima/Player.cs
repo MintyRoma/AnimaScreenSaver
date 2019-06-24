@@ -16,6 +16,7 @@ namespace ScreenSaver_Anima
         Video PlayVideo;
         string playnow = "";
         WindowsMediaPlayer play = new WindowsMediaPlayer();
+        Point CursosPosition = new Point();
         public Player()
         {
             Tools.GetData();
@@ -33,22 +34,34 @@ namespace ScreenSaver_Anima
                 frm.Location = new Point(screen.Bounds.X,screen.Bounds.Y);
                 frm.BackColor = System.Drawing.Color.Black;
                 frm.FormBorderStyle = FormBorderStyle.None;
-                frm.MouseMove += Frm_MouseMove;
-                frm.KeyDown += Frm_MouseMove;
-                frm.FormClosing += Frm_MouseMove;
+                CursosPosition = Cursor.Position;
+                frm.MouseMove+= Frm_MouseMove;
+                frm.KeyDown += Frm_Close;
+                frm.FormClosing += Frm_Close;
                 frm.TopMost = true;
                 PlayVideo.Size = frm.Size;
                 frm.Size = screen.Bounds.Size;
                 PlayVideo.Audio.Volume = (Tools.Volume*100)-10000;
                 
                 frm.Show();
+                Cursor.Hide();
                 PlayVideo.Play();
             }
         }
 
-        private void Frm_MouseMove(object sender, EventArgs e)
+        private void Frm_Close(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void Frm_MouseMove(object sender, EventArgs e)
+        {
+            Point TMP = Cursor.Position;
+            if ((Math.Abs(CursosPosition.X-TMP.X)>0) || (Math.Abs(CursosPosition.Y - TMP.Y) > 0))
+            {
+                Application.Exit();
+            }
+            CursosPosition = TMP;
         }
 
                
