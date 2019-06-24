@@ -7,9 +7,11 @@ using System.Windows.Forms;
 
 namespace ScreenSaver_Anima
 {
+    
     public class App : ApplicationContext
     {
         public static MODE mode = MODE.Play;
+        [STAThread]
         static void Main(string[] args)
         {
             Application.EnableVisualStyles();

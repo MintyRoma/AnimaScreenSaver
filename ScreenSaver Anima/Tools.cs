@@ -22,6 +22,20 @@ namespace ScreenSaver_Anima
             allowkeys = InitAllow();
         }
 
+        public static void SetData(List<string> vids, int vol, bool allowkey)
+        {
+            videos = vids;
+            volume = vol;
+            allowkeys = allowkey;
+            CheckReg();
+            WriteVideoData();
+        }
+
+        #region ReadRegistry
+        /// <summary>
+        /// Считывает из реестра список видео которые будут показываться при работе
+        /// </summary>
+        /// <returns>List<string></returns>
         public static List<string> InitVideos()
         {
             List<string> video = new List<string>();
@@ -38,6 +52,7 @@ namespace ScreenSaver_Anima
             }
             return video;
         }
+
         /// <summary>
         /// Считывает из реестра значение звука от 0 до 100.
         /// В случае если значение в реестре больше чем 100 или меньше 0,
@@ -78,7 +93,25 @@ namespace ScreenSaver_Anima
             if (vol == 0) allow = false;
             return allow;
         }
+        #endregion
 
+        #region WriteRegistry
+        /// <summary>
+        /// Производит запись видео в реестр Windows
+        /// </summary>
+        private static void WriteVideoData()
+        {
+            RegistryKey MainKey = Registry.CurrentUser.OpenSubKey(@"Software\AnimaScreenSaver");
+            MainKey.DeleteValue("Play");
+            string pathes = "";
+            foreach(string vids in videos)
+            {
+                vid
+            }
+        }
+        #endregion
+
+        #region CheckRegistry
         /// <summary>
         /// Проверяет целостность данных в реестре. В случае отсутствия параметров записывает их все по дефолту.
         /// </summary>
@@ -116,6 +149,7 @@ namespace ScreenSaver_Anima
             WorkKey.SetValue("Volume", 50, RegistryValueKind.DWord);
             WorkKey.SetValue("AllowKeys", 0, RegistryValueKind.DWord);
         }
+        #endregion
 
         public static int Volume
         {

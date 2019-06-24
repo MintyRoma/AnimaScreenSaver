@@ -13,11 +13,12 @@ namespace ScreenSaver_Anima
     public partial class Setup : Form
     {
 
-        
+        List<string> vids;
         public Setup()
         {
             InitializeComponent();
             Tools.GetData();
+            vids = Tools.Videos;
             AddVideos();
             EnableVolumeControlCB.Checked = Tools.AllowKeys;
             VolumeBar.Value = Tools.Volume;
@@ -40,7 +41,8 @@ namespace ScreenSaver_Anima
         /// </summary>
         private void AddVideos()
         {
-            List<string> vids = Tools.Videos;
+            VideoList.Items.Clear();
+            vids = Tools.Videos;
             for (int i = 0; i < vids.Count; i++)
             {
                 VideoList.Items.Add(vids[i]);
@@ -52,6 +54,22 @@ namespace ScreenSaver_Anima
             string filepath = "";
             OpenFileDialog fd = new OpenFileDialog();
             fd.Title = "Выберите видеофайлы";
+
+
+            fd.InitialDirectory = "C:\\";
+            fd.Filter = "mp4 files (*.MP4/*.M4V)|*.mp4|avi files (*.avi)|*.avi|mov files (*.mov)|*.mov|mov files (*.mov)|*.mov";
+            fd.FilterIndex = 2;
+            fd.RestoreDirectory = true;
+
+            if (fd.ShowDialog() == DialogResult.OK)
+            {
+                
+                filepath  = fd.FileName;
+                
+            }
+
+            vids.Add(filepath);
+            AddVideos();
         }
 
         private void Setup_Load(object sender, EventArgs e)
