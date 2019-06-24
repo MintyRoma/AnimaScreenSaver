@@ -17,6 +17,9 @@ namespace ScreenSaver_Anima
         public Setup()
         {
             InitializeComponent();
+#if DEBUG
+            BUILDLABEL.Text = "Build №" + App.BUILD;
+#endif
             Tools.GetData();
             vids = Tools.Videos;
             AddVideos();

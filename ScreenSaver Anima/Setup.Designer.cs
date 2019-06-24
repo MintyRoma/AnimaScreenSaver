@@ -38,6 +38,7 @@
             this.CancelBtn = new System.Windows.Forms.Button();
             this.ConfirmBtn = new System.Windows.Forms.Button();
             this.SaveBtn = new System.Windows.Forms.Button();
+            this.BUILDLABEL = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.VolumeBar)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -95,6 +96,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.BUILDLABEL);
             this.groupBox1.Controls.Add(this.VolumeBar);
             this.groupBox1.Controls.Add(this.EnableVolumeControlCB);
             this.groupBox1.Location = new System.Drawing.Point(12, 180);
@@ -144,6 +146,14 @@
             this.SaveBtn.UseVisualStyleBackColor = true;
             this.SaveBtn.Click += new System.EventHandler(this.Button3_Click);
             // 
+            // BUILDLABEL
+            // 
+            this.BUILDLABEL.AutoSize = true;
+            this.BUILDLABEL.Location = new System.Drawing.Point(6, 134);
+            this.BUILDLABEL.Name = "BUILDLABEL";
+            this.BUILDLABEL.Size = new System.Drawing.Size(0, 13);
+            this.BUILDLABEL.TabIndex = 2;
+            // 
             // Setup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -180,5 +190,6 @@
         private System.Windows.Forms.Button CancelBtn;
         private System.Windows.Forms.Button ConfirmBtn;
         private System.Windows.Forms.Button SaveBtn;
+        private System.Windows.Forms.Label BUILDLABEL;
     }
 }
