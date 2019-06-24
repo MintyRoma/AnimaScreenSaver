@@ -27,6 +27,7 @@ namespace ScreenSaver_Anima
             if (args.Length > 1 || args.Length == 0) mode = MODE.Play;
             else if (args[0] == "/c") mode = MODE.Setup;
             else if (args[0] == "/p") mode = MODE.Demo;
+            else if (args[0] == "/t") mode = MODE.Test;
             else mode = MODE.Play;
         }
 
@@ -40,6 +41,11 @@ namespace ScreenSaver_Anima
             if (mode == MODE.Play)
             {
                 Player pl = new Player();
+
+            }
+            if (mode == MODE.Test)
+            {
+                videoplay vp = new videoplay();
             }
         }
 

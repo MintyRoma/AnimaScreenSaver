@@ -3,4 +3,5 @@
     Play,
     Setup,
     Demo,
+    Test,
 };
