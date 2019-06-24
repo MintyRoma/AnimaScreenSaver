@@ -89,6 +89,7 @@
             this.DeleteVideo.TabIndex = 4;
             this.DeleteVideo.Text = "Удалить";
             this.DeleteVideo.UseVisualStyleBackColor = true;
+            this.DeleteVideo.Click += new System.EventHandler(this.DeleteVideo_Click);
             // 
             // groupBox1
             // 

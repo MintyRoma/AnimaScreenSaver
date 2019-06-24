@@ -106,8 +106,10 @@ namespace ScreenSaver_Anima
             string pathes = "";
             foreach(string vids in videos)
             {
-                vid
+                pathes += vids + "|";
             }
+            pathes = pathes.Substring(0, pathes.Length - 1);
+            MainKey.SetValue("Play", pathes, RegistryValueKind.String);
         }
         #endregion
 
