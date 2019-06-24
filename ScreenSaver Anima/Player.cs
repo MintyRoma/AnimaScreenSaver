@@ -6,6 +6,7 @@ using WMPLib;
 using Microsoft.DirectX;
 using Microsoft.DirectX.AudioVideoPlayback;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace ScreenSaver_Anima
 {
@@ -13,23 +14,39 @@ namespace ScreenSaver_Anima
     {
         List<string> videos = new List<string>();
         Video PlayVideo;
+        string playnow = "";
+        WindowsMediaPlayer play = new WindowsMediaPlayer();
         public Player()
         {
+            Tools.GetData();
+            videos = Tools.Videos;
             Random rnd = new Random();
-            int vid = rnd.Next(videos.Count) - 1;
+            int vid = rnd.Next(videos.Count);
             string playnow = videos[vid];
             PlayVideo = new Video(playnow, false); 
-            foreach (var screen in Screen.AllScreens)
+            foreach (Screen screen in Screen.AllScreens)
             {
                 Form frm = new Form();
-                frm.Size = screen.WorkingArea.Size;
-                frm.Location = screen.WorkingArea.Location;
-                frm.TopMost = true;
-                frm.FormBorderStyle = FormBorderStyle.None;
                 PlayVideo.Owner = frm;
+                frm.Size = screen.Bounds.Size;
+                frm.StartPosition = FormStartPosition.Manual;
+                frm.Location = new Point(screen.Bounds.X,screen.Bounds.Y);
+                frm.BackColor = System.Drawing.Color.Black;
+                frm.FormBorderStyle = FormBorderStyle.None;
+                frm.TopMost = true;
                 PlayVideo.Size = frm.Size;
+                frm.Size = screen.Bounds.Size;
+                PlayVideo.Audio.Volume = (Tools.Volume*100)-10000;
+                
+                frm.Show();
                 PlayVideo.Play();
             }
         }
+
+        private void FormClose()
+        {
+            Application.Exit();
+        }
+               
     }
 }
