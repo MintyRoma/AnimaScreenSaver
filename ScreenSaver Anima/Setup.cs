@@ -111,5 +111,16 @@ namespace ScreenSaver_Anima
         {
             Tools.AllowKeys = EnableVolumeControlCB.Checked;
         }
+
+        private void ConfirmBtn_Click(object sender, EventArgs e)
+        {
+            Tools.SetData(vids, Tools.Volume, Tools.AllowKeys);
+        }
+
+        private void CancelBtn_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+
+        }
     }
 } 

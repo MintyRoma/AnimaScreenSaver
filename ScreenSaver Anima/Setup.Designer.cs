@@ -34,11 +34,11 @@
             this.BrowseVideo = new System.Windows.Forms.Button();
             this.DeleteVideo = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.BUILDLABEL = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.CancelBtn = new System.Windows.Forms.Button();
             this.ConfirmBtn = new System.Windows.Forms.Button();
             this.SaveBtn = new System.Windows.Forms.Button();
-            this.BUILDLABEL = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.VolumeBar)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -106,6 +106,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Громкость";
             // 
+            // BUILDLABEL
+            // 
+            this.BUILDLABEL.AutoSize = true;
+            this.BUILDLABEL.Location = new System.Drawing.Point(6, 134);
+            this.BUILDLABEL.Name = "BUILDLABEL";
+            this.BUILDLABEL.Size = new System.Drawing.Size(0, 13);
+            this.BUILDLABEL.TabIndex = 2;
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.VideoList);
@@ -126,6 +134,7 @@
             this.CancelBtn.TabIndex = 7;
             this.CancelBtn.Text = "Отмена";
             this.CancelBtn.UseVisualStyleBackColor = true;
+            this.CancelBtn.Click += new System.EventHandler(this.CancelBtn_Click);
             // 
             // ConfirmBtn
             // 
@@ -135,6 +144,7 @@
             this.ConfirmBtn.TabIndex = 7;
             this.ConfirmBtn.Text = "Принять";
             this.ConfirmBtn.UseVisualStyleBackColor = true;
+            this.ConfirmBtn.Click += new System.EventHandler(this.ConfirmBtn_Click);
             // 
             // SaveBtn
             // 
@@ -145,14 +155,6 @@
             this.SaveBtn.Text = "Сохранить";
             this.SaveBtn.UseVisualStyleBackColor = true;
             this.SaveBtn.Click += new System.EventHandler(this.Button3_Click);
-            // 
-            // BUILDLABEL
-            // 
-            this.BUILDLABEL.AutoSize = true;
-            this.BUILDLABEL.Location = new System.Drawing.Point(6, 134);
-            this.BUILDLABEL.Name = "BUILDLABEL";
-            this.BUILDLABEL.Size = new System.Drawing.Size(0, 13);
-            this.BUILDLABEL.TabIndex = 2;
             // 
             // Setup
             // 
