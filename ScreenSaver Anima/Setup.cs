@@ -12,7 +12,7 @@ namespace ScreenSaver_Anima
 {
     public partial class Setup : Form
     {
-        int guiversion = 1;
+        int const guiversion = 1;
         List<string> vids;
         public Setup()
         {
@@ -33,12 +33,7 @@ namespace ScreenSaver_Anima
             Application.Exit();
         }
 
-        /// <summary>
-        /// Считывает из реестра список воспроизводимых видео
-        /// </summary>
-        /// <returns>Список путей с видео</returns>
-        
-
+      
         /// <summary>
         /// Добавляет список видео в ListBox
         /// </summary>
@@ -48,7 +43,7 @@ namespace ScreenSaver_Anima
             vids = Tools.Videos;
             foreach(string vid in vids)
             {
-                if (vid == "") ;
+                if (!vid.Contains(".")) ;
                 else VideoList.Items.Add(vid);
             }
         }
