@@ -43,7 +43,7 @@ namespace ScreenSaver_Anima
             vids = Tools.Videos;
             foreach(string vid in vids)
             {
-                if (!vid.Contains(".")) ;
+                if (!File.Exist(vid)) ;
                 else VideoList.Items.Add(vid);
             }
         }
