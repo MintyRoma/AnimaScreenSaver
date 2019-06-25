@@ -12,7 +12,7 @@ namespace ScreenSaver_Anima
 {
     public partial class Setup : Form
     {
-        int const guiversion = 1;
+        const int guiversion = 1;
         List<string> vids;
         public Setup()
         {
@@ -33,7 +33,7 @@ namespace ScreenSaver_Anima
             Application.Exit();
         }
 
-      
+
         /// <summary>
         /// Добавляет список видео в ListBox
         /// </summary>
@@ -41,9 +41,9 @@ namespace ScreenSaver_Anima
         {
             VideoList.Items.Clear();
             vids = Tools.Videos;
-            foreach(string vid in vids)
+            foreach (string vid in vids)
             {
-                if (!File.Exist(vid)) ;
+                if (!vid.Contains(".")) ;
                 else VideoList.Items.Add(vid);
             }
         }
@@ -62,9 +62,9 @@ namespace ScreenSaver_Anima
 
             if (fd.ShowDialog() == DialogResult.OK)
             {
-                
-                filepath  = fd.FileName;
-                
+
+                filepath = fd.FileName;
+
             }
 
 
@@ -73,7 +73,7 @@ namespace ScreenSaver_Anima
                 vids.Add(filepath);
                 AddVideos();
             }
-            
+
         }
 
         private void Setup_Load(object sender, EventArgs e)
@@ -118,4 +118,4 @@ namespace ScreenSaver_Anima
 
         }
     }
-} 
+}
