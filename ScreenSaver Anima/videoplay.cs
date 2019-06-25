@@ -10,13 +10,12 @@ using System.Drawing;
 using System.ComponentModel;
 using System.Data;
 using System.IO;
+using System.Threading;
 
 namespace ScreenSaver_Anima
 {
     class videoplay
-    {       string path = @"";
-            bool screen1 = true;
-            bool play = true;
+    {       
         List<string> videos = new List<string>();
         public videoplay()
         {
@@ -25,6 +24,11 @@ namespace ScreenSaver_Anima
 
         private void Start()
         {
+            string path = @"";
+            bool screen1 = true;
+            bool play = true;
+
+
             Tools.GetData();
             videos = Tools.Videos;
             Random rnd = new Random();
@@ -39,7 +43,7 @@ namespace ScreenSaver_Anima
             {
                 foreach (Screen screen in Screen.AllScreens)
                 {
-                    startplay(screen);
+                    startplay(screen, path, screen1);
                 }
             }
             
@@ -47,13 +51,11 @@ namespace ScreenSaver_Anima
 
         }
 
-        public void startplay(Screen screen)
+        public void startplay(Screen screen, String path,bool screen1)
         {
             Form frm = new Form();
             Video video = null;
-
-            if (this.screen1) video = new Video(path);//dont delete its black magic
-
+            video = new Video(path);//dont delete its black magic
             video = null;
             video = new Video(path);
 
@@ -61,6 +63,7 @@ namespace ScreenSaver_Anima
             {
                 video.Owner = frm;
                 frm.Size = screen.Bounds.Size;
+                frm.TopMost = true;
                 frm.StartPosition = FormStartPosition.Manual;
                 frm.Location = new Point(screen.Bounds.X, screen.Bounds.Y);
                 frm.BackColor = System.Drawing.Color.Black;

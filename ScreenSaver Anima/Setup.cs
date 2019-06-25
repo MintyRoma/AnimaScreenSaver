@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,7 @@ namespace ScreenSaver_Anima
 {
     public partial class Setup : Form
     {
-        const int guiversion = 1;
+       const  int guiversion = 1;
         List<string> vids;
         public Setup()
         {
@@ -43,7 +44,7 @@ namespace ScreenSaver_Anima
             vids = Tools.Videos;
             foreach (string vid in vids)
             {
-                if (!vid.Contains(".")) ;
+                if (!File.Exists(vid)) ;
                 else VideoList.Items.Add(vid);
             }
         }
