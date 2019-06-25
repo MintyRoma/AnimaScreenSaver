@@ -25,13 +25,23 @@ namespace ScreenSaver_Anima
         public static void SetData(List<string> vids, int vol, bool allowkey)
         {
             videos = vids;
-            volume = vol;
+            CheckReg();
+            WriteVideoData();
+            WriteVolume();
+            WriteAllowKey();
+        }
+
+        public static void SetData(List<string> vids)
+        {
+            videos = vids;
+            volume = volume;
             allowkeys = allowkey;
             CheckReg();
             WriteVideoData();
             WriteVolume();
             WriteAllowKey();
         }
+
 
         #region ReadRegistry
         /// <summary>
