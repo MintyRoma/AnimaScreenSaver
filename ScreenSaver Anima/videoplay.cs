@@ -15,7 +15,7 @@ using System.Threading;
 namespace ScreenSaver_Anima
 {
     class videoplay
-    {       
+    {   public bool screen1 = true;
         List<string> videos = new List<string>();
         public videoplay()
         {
@@ -25,7 +25,6 @@ namespace ScreenSaver_Anima
         private void Start()
         {
             string path = @"";
-            bool screen1 = true;
             bool play = true;
 
 
@@ -36,14 +35,14 @@ namespace ScreenSaver_Anima
             path = videos[index];
             
 
-            
-                                                                                                                                    Cursor.Hide();
-
+            Cursor.Hide();
             if (File.Exists(path))
             {
+                int i = 1;
                 foreach (Screen screen in Screen.AllScreens)
                 {
-                    startplay(screen, path, screen1);
+                    new Thread(() => startplay(screen, path, i)).Start();
+                    i++;
                 }
             }
             
@@ -51,8 +50,10 @@ namespace ScreenSaver_Anima
 
         }
 
-        public void startplay(Screen screen, String path,bool screen1)
+        public void startplay(Screen screen, String path,int screenid)
         {
+            
+            Cursor.Hide();
             Form frm = new Form();
             Video video = null;
             video = new Video(path);//dont delete its black magic
@@ -71,18 +72,21 @@ namespace ScreenSaver_Anima
                 frm.Size = screen.Bounds.Size;
                 video.Size = frm.Size;
 
-                if (screen1)
-                {
-                    video.Audio.Volume = (Tools.Volume * 100) - 10000;
-                    screen1 = false;
-                }
-                else
-                {
-                    video.Audio.Volume = -10000;
-                }
+                video.Audio.Volume = (Tools.Volume * 100) - 10000;
+
 
                 video.Play();
                 frm.Show();
+                while (true)
+                {
+                    if (video.Duration <= video.CurrentPosition)
+                    {
+                        Start();
+                        frm.Close();
+                    }
+                    
+                }
+                
             }
 
         }
