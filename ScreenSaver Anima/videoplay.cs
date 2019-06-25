@@ -33,40 +33,22 @@ namespace ScreenSaver_Anima
 
             bool screen1 = true;
             bool play = true;
+                                                                                                                                    Cursor.Hide();
 
-            foreach (Screen screen in Screen.AllScreens)
+            if (File.Exists(path))
             {
-                Form frm = new Form();
-                Video video = null;
-
-                if (screen1)
+                foreach (Screen screen in Screen.AllScreens)
                 {
-                    try
-                    {
+                    Form frm = new Form();
+                    Video video = null;
+
+                    if (screen1)video = new Video(path);//dont delete its black magic
+
                     video = null;
                     video = new Video(path);
-                    }
-                    catch
-                    {
 
-                    }
-                }
-
-
-                try
-                {
-                    video = null;
-                    video = new Video(path);
-                }
-                catch (Exception ex)
-                {
-                    video = null;
-                }
-                finally
-                {
                     if (video != null)
                     {
-
                         video.Owner = frm;
                         frm.Size = screen.Bounds.Size;
                         frm.StartPosition = FormStartPosition.Manual;
@@ -84,22 +66,23 @@ namespace ScreenSaver_Anima
                         else
                         {
                             video.Audio.Volume = -10000;
-
                         }
+
                         video.Play();
                         frm.Show();
                     }
+
                     if (!play)
                     {
                         Application.Exit();
                     }
+                 
+
                 }
             }
+            
 
 
-            //video.Owner = form1;
-            //video.Size = new Size(1920, 1080);
-            //video.Play();
         }
     }
 }
