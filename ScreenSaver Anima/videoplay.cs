@@ -15,7 +15,9 @@ using System.Threading;
 namespace ScreenSaver_Anima
 {
     class videoplay
-    {   public bool screen1 = true;
+    {   
+        private Point CursorPosition = new Point();
+        public bool screen1 = true;
         List<string> videos = new List<string>();
         public videoplay()
         {
@@ -69,6 +71,9 @@ namespace ScreenSaver_Anima
                 frm.Location = new Point(screen.Bounds.X, screen.Bounds.Y);
                 frm.BackColor = System.Drawing.Color.Black;
                 frm.FormBorderStyle = FormBorderStyle.None;
+                frm.MouseMove += Frm_MouseMove;
+                frm.KeyDown += Frm_Close;
+                frm.FormClosing += Frm_Close;
                 frm.Size = screen.Bounds.Size;
                 video.Size = frm.Size;
 
@@ -89,6 +94,20 @@ namespace ScreenSaver_Anima
                 
             }
 
+        }
+        private void Frm_Close(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void Frm_MouseMove(object sender, EventArgs e)
+        {
+            Point TMP = Cursor.Position;
+            if ((Math.Abs(CursosPosition.X-TMP.X)>0) || (Math.Abs(CursosPosition.Y - TMP.Y) > 0))
+            {
+                Application.Exit();
+            }
+            CursosPosition = TMP;
         }
     }
 }
