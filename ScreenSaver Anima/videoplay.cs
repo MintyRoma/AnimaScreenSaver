@@ -16,7 +16,6 @@ namespace ScreenSaver_Anima
 {
     class videoplay
     {
-        bool play = true;
         private Point CursorPosition = new Point();
         List<string> videos = new List<string>();
         public videoplay()

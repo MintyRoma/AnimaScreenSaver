@@ -30,7 +30,6 @@ namespace ScreenSaver_Anima
 
         private void Setup_FormClosing(object sender, FormClosingEventArgs e)
         {
-
             Application.Exit();
         }
 
@@ -53,19 +52,27 @@ namespace ScreenSaver_Anima
         {
             string filepath = "";
             OpenFileDialog fd = new OpenFileDialog();
+
+
             fd.Title = "Выберите видеофайлы";
-
-
+            fd.Multiselect = true;
             fd.InitialDirectory = "C:\\";
             fd.Filter = "video files (*.mp4;*.avi;*.mov)|*.mp4;*.avi;*.mov";
             fd.FilterIndex = 1;
             fd.RestoreDirectory = true;
 
+
             if (fd.ShowDialog() == DialogResult.OK)
             {
-
-                filepath = fd.FileName;
-
+                string[] files = fd.FileNames;
+                for (int i = 0; i < files.Count(); i++)
+                { 
+                    if (!vids.Contains(files[i]))
+                    {
+                        vids.Add(files[i]);
+                        AddVideos();
+                    }
+                }
             }
 
 
@@ -116,7 +123,6 @@ namespace ScreenSaver_Anima
         private void CancelBtn_Click(object sender, EventArgs e)
         {
             Application.Exit();
-
         }
     }
 }
