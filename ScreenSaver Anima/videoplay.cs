@@ -15,17 +15,20 @@ using System.Threading;
 namespace ScreenSaver_Anima
 {
     class videoplay
-    {   public bool screen1 = true;
+    {
+        delegate void Startdel();
+        bool play = true;
+        private Point CursorPosition = new Point();
         List<string> videos = new List<string>();
         public videoplay()
         {
             Start();
+
         }
 
         private void Start()
         {
             string path = @"";
-            Form press = new Form();
 
 
 
@@ -34,10 +37,9 @@ namespace ScreenSaver_Anima
             Random rnd = new Random();
             int index = rnd.Next(videos.Count);
             path = videos[index];
-            
 
+          
             Cursor.Hide();
-            play = true;
             if (File.Exists(path))
             {
                 int i = 1;
@@ -47,19 +49,18 @@ namespace ScreenSaver_Anima
                     i++;
                 }
             }
-            
+
 
 
         }
 
-        public void startplay(Screen screen, String path,int screenid)
+        public void startplay(Screen screen, String path, int screenid)
         {
-            
+
             Cursor.Hide();
             Form frm = new Form();
             Video video = null;
             video = new Video(path);//dont delete its black magic
-            video = null;
             video = new Video(path);
 
             if (video != null)
@@ -84,25 +85,38 @@ namespace ScreenSaver_Anima
                 frm.Show();
                 while (true)
                 {
-                    if (video.Duration <= video.CurrentPosition)
+                    if (video.Duration-5 <= video.CurrentPosition)
                     {
-                        Start();
-                        frm.Close();
-                    }
-                    if(play == false)
-                    {
-                        Application.Exit();
+                        //try
+                        //{
+                        //    Startdel startdelegate = Start;
+                        //    startdelegate();
+                        //    frm.Close();
+                        //}catch
+                        //{
+                            video.CurrentPosition = 0;
+                        //}
+                        
                     }
 
                 }
-                
+
             }
 
         }
-
-        private void press_KeyPress(object sender, KeyPressEventArgs e)
+        private void Frm_Close(object sender, EventArgs e)
         {
-            
+            Application.Exit();
+        }
+
+        private void Frm_MouseMove(object sender, EventArgs e)
+        {
+            Point TMP = Cursor.Position;
+            if ((Math.Abs(CursorPosition.X - TMP.X) > 0) || (Math.Abs(CursorPosition.Y - TMP.Y) > 0))
+            {
+                Application.Exit();
+            }
+            CursorPosition = TMP;
         }
     }
 }
