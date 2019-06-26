@@ -15,7 +15,8 @@ using System.Threading;
 namespace ScreenSaver_Anima
 {
     class videoplay
-    {   public bool screen1 = true;
+    {
+        static bool play;
         List<string> videos = new List<string>();
         public videoplay()
         {
@@ -25,7 +26,8 @@ namespace ScreenSaver_Anima
         private void Start()
         {
             string path = @"";
-            bool play = true;
+            Form press = new Form();
+
 
 
             Tools.GetData();
@@ -36,6 +38,7 @@ namespace ScreenSaver_Anima
             
 
             Cursor.Hide();
+            play = true;
             if (File.Exists(path))
             {
                 int i = 1;
@@ -84,11 +87,21 @@ namespace ScreenSaver_Anima
                         Start();
                         frm.Close();
                     }
-                    
+                    if(play == false)
+                    {
+                        Application.Exit();
+                    }
+
                 }
                 
             }
 
         }
+
+        private void press_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
+
     }
 }
