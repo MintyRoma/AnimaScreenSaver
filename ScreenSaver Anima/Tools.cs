@@ -33,6 +33,16 @@ namespace ScreenSaver_Anima
             WriteAllowKey();
         }
 
+        public static void SetData(List<string> vids)
+        {
+            videos = vids;
+            CheckReg();
+            WriteVideoData();
+            WriteVolume();
+            WriteAllowKey();
+        }
+
+
         #region ReadRegistry
         /// <summary>
         /// Считывает из реестра список видео которые будут показываться при работе
