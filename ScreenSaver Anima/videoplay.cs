@@ -16,7 +16,6 @@ namespace ScreenSaver_Anima
 {
     class videoplay
     {
-        delegate void Startdel();
         bool play = true;
         private Point CursorPosition = new Point();
         List<string> videos = new List<string>();
@@ -87,15 +86,7 @@ namespace ScreenSaver_Anima
                 {
                     if (video.Duration-5 <= video.CurrentPosition)
                     {
-                        //try
-                        //{
-                        //    Startdel startdelegate = Start;
-                        //    startdelegate();
-                        //    frm.Close();
-                        //}catch
-                        //{
-                            video.CurrentPosition = 0;
-                        //}
+                       //при конце видео
                         
                     }
 
