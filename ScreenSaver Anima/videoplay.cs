@@ -83,9 +83,11 @@ namespace ScreenSaver_Anima
                 frm.Show();
                 while (true)
                 {
-                    if (video.Duration-5 <= video.CurrentPosition)
+                    if (video.Duration-1 <= video.CurrentPosition)
                     {
-                       //при конце видео
+                        video.Stop();
+                        video.CurrentPosition = 0;
+                        video.Play();
                         
                     }
 
