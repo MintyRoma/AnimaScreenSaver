@@ -57,8 +57,8 @@ namespace ScreenSaver_Anima
 
 
             fd.InitialDirectory = "C:\\";
-            fd.Filter = "video (*.MP4/*.M4V/*.avi/*.mov)|";
-            fd.FilterIndex = 2;
+            fd.Filter = "video files (*.mp4;*.avi;*.mov)|*.mp4;*.avi;*.mov";
+            fd.FilterIndex = 1;
             fd.RestoreDirectory = true;
 
             if (fd.ShowDialog() == DialogResult.OK)
