@@ -59,8 +59,8 @@ namespace ScreenSaver_Anima
             Form frm = new Form();
             Video video = null;
             if(screenid == 1) { 
-            video = new Video(path);//dont delete its black magic
-            video = null;//dont delete its black magic
+                video = new Video(path);//dont delete its black magic
+                video = null;//dont delete its black magic
             }
             video = new Video(path);
 
