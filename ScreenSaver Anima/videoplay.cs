@@ -58,7 +58,10 @@ namespace ScreenSaver_Anima
             Cursor.Hide();
             Form frm = new Form();
             Video video = null;
+            if(screenid == 1) { 
             video = new Video(path);//dont delete its black magic
+            video = null;//dont delete its black magic
+            }
             video = new Video(path);
 
             if (video != null)
@@ -85,16 +88,12 @@ namespace ScreenSaver_Anima
                 {
                     if (video.Duration-1 <= video.CurrentPosition)
                     {
-                        video.Stop();
-                        video.CurrentPosition = 0;
-                        video.Play();
-                        
+                    //    video.Stop();
+                    //    video.CurrentPosition = 0;
+                    //    video.Play();
                     }
-
                 }
-
             }
-
         }
         private void Frm_Close(object sender, EventArgs e)
         {
