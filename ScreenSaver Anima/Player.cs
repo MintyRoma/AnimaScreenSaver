@@ -29,15 +29,16 @@ namespace ScreenSaver_Anima
         {
             vid.Play();
             while (vidsActual[0].CurrentPosition < vidsActual[0].Duration) continue;
+            return;
         }
 
         private void Start()
         {
-            Random rnd = new Random(956326);
+            Random rnd = new Random();
             int randomvid = rnd.Next(Tools.Videos.Count);
             playnow = Tools.Videos[randomvid];
-           foreach(Screen scr in Screen.AllScreens)
-           {
+            foreach(Screen scr in Screen.AllScreens)
+            {
                 Form frm = new Form();
                 Video vid = new Video(playnow);
                 vid.Owner = frm;
@@ -53,11 +54,12 @@ namespace ScreenSaver_Anima
                 vidsActual.Add(vid);
                 frm.Show();
                 
-           }
+            }
             foreach (Video vid in vidsActual)
             {
                 new Thread(() => Play(vid)).Start();
             }
+            return;
             
         }
 
