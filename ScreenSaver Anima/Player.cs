@@ -7,64 +7,56 @@ using Microsoft.DirectX;
 using Microsoft.DirectX.AudioVideoPlayback;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Threading;
 
 namespace ScreenSaver_Anima
 {
     class Player
     {
-        List<string> videos = new List<string>();
         List<Video> vidsActual = new List<Video>();
         string playnow = "";
-        WindowsMediaPlayer play = new WindowsMediaPlayer();
         Point CursosPosition = new Point();
         public Player()
         {
+            Tools.GetData();
             while (true)
             {
                 Start();
-                Play();
             }
         }
 
-        private void Play()
+        private void Play(Video vid)
         {
-            foreach(Video vd in vidsActual)
-            {
-                vd.Play();
-            }
-            while (vidsActual[0].Playing == true) continue;
+            vid.Play();
+            while (vidsActual[0].CurrentPosition < vidsActual[0].Duration) continue;
         }
 
         private void Start()
         {
-            Tools.GetData();
-            videos = Tools.Videos;
-            Random rnd = new Random();
-            int vid = rnd.Next(videos.Count);
-            string playnow = videos[vid];
-            foreach (Screen screen in Screen.AllScreens)
-            {
-                Video PlayVideo;
-                PlayVideo = new Video(playnow, false);
+            Random rnd = new Random(956326);
+            int randomvid = rnd.Next(Tools.Videos.Count);
+            playnow = Tools.Videos[randomvid];
+           foreach(Screen scr in Screen.AllScreens)
+           {
                 Form frm = new Form();
-                PlayVideo.Owner = frm;
-                frm.Size = screen.Bounds.Size;
-                frm.StartPosition = FormStartPosition.Manual;
-                frm.Location = new Point(screen.Bounds.X, screen.Bounds.Y);
-                frm.BackColor = System.Drawing.Color.Black;
+                Video vid = new Video(playnow);
+                vid.Owner = frm;
+                frm.Size = scr.Bounds.Size;
+                frm.Location = scr.Bounds.Location;
+                frm.TopLevel = true;
                 frm.FormBorderStyle = FormBorderStyle.None;
-                CursosPosition = Cursor.Position;
+                frm.BackColor = System.Drawing.Color.Black;
+                frm.FormClosing += Frm_Close;
+                frm.MouseClick += Frm_Close;
                 frm.MouseMove += Frm_MouseMove;
                 frm.KeyDown += Frm_Close;
-                frm.FormClosing += Frm_Close;
-                //frm.TopMost = true;
-                PlayVideo.Size = frm.Size;
-                frm.Size = screen.Bounds.Size;
-                PlayVideo.Audio.Volume = (Tools.Volume * 100) - 10000;
-
+                vidsActual.Add(vid);
                 frm.Show();
-                Cursor.Hide();
-                vidsActual.Add(PlayVideo);
+                
+           }
+            foreach (Video vid in vidsActual)
+            {
+                new Thread(() => Play(vid)).Start();
             }
             
         }
