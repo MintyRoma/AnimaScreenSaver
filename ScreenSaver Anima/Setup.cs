@@ -108,6 +108,8 @@ namespace ScreenSaver_Anima
         private void VolumeBar_Scroll(object sender, EventArgs e)
         {
             Tools.Volume = VolumeBar.Value;
+            ToolTip tl = new ToolTip();
+            tl.SetToolTip(this.VolumeBar, @"Громкость: " + VolumeBar.Value);
         }
 
         private void EnableVolumeControlCB_CheckedChanged(object sender, EventArgs e)
