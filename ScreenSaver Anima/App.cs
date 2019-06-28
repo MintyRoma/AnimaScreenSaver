@@ -40,7 +40,26 @@ namespace ScreenSaver_Anima
             }
             if (mode == MODE.Play)
             {
-                Player pl = new Player();
+                Tools.GetData();
+                Random rnd = new Random();
+                string path = Tools.Videos[rnd.Next(Tools.Videos.Count)];
+                foreach (Screen scr in Screen.AllScreens)
+                {
+                    WMP frm = new WMP(scr, path);
+                    frm.Show();
+                }
+                List<WMP> frms = new List<WMP>();
+                foreach (Form frm in Application.OpenForms)
+                {
+                    if (frm is WMP)
+                    {
+                        frms.Add((WMP)frm);
+                    }
+                }
+                foreach (WMP act in frms)
+                {
+                    act.Play();
+                }
 
             }
             if (mode == MODE.Test)
