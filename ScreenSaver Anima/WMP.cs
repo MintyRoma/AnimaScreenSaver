@@ -11,6 +11,8 @@ namespace ScreenSaver_Anima
 {
     public partial class WMP : Form
     {
+
+        private Point CursorPosition = new Point();
         public WMP(Screen sc, string path)
         {
             InitializeComponent();
@@ -26,6 +28,7 @@ namespace ScreenSaver_Anima
 
         public void Play()
         {
+            CursorPosition = Cursor.Position;
             vid.Ctlcontrols.play();
         }
 
@@ -56,7 +59,12 @@ namespace ScreenSaver_Anima
 
         private void Vid_MouseMoveEvent(object sender, AxWMPLib._WMPOCXEvents_MouseMoveEvent e)
         {
-            //Application.Exit();
+            Point TMP = Cursor.Position;
+            if ((Math.Abs(CursorPosition.X - TMP.X) > 0) || (Math.Abs(CursorPosition.Y - TMP.Y) > 0))
+            {
+                Application.Exit();
+            }
+            CursorPosition = TMP;
         }
 
         private void Vid_MouseDownEvent(object sender, AxWMPLib._WMPOCXEvents_MouseDownEvent e)
