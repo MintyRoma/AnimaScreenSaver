@@ -46,6 +46,7 @@
             this.vid.KeyDownEvent += new AxWMPLib._WMPOCXEvents_KeyDownEventHandler(this.Vid_KeyDownEvent);
             this.vid.MouseDownEvent += new AxWMPLib._WMPOCXEvents_MouseDownEventHandler(this.Vid_MouseDownEvent);
             this.vid.MouseMoveEvent += new AxWMPLib._WMPOCXEvents_MouseMoveEventHandler(this.Vid_MouseMoveEvent);
+            this.vid.PlayStateChange += new AxWMPLib._WMPOCXEvents_PlayStateChangeEventHandler(this.Vid_PlayStateChange);
             // 
             // WMP
             // 
@@ -57,6 +58,7 @@
             this.Name = "WMP";
             this.Text = "WMP";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.WMP_FormClosed);
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.WMP_MouseClick);
             ((System.ComponentModel.ISupportInitialize)(this.vid)).EndInit();
             this.ResumeLayout(false);
 

@@ -20,6 +20,8 @@ namespace ScreenSaver_Anima
             vid.URL = path;
             vid.Size = this.Size;
             vid.Location = this.Location;
+            vid.settings.volume = Tools.Volume;
+            if (sc != Screen.AllScreens[0]) vid.settings.volume = 0;
         }
 
         public void Play()
@@ -70,6 +72,16 @@ namespace ScreenSaver_Anima
         private void WMP_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void WMP_MouseClick_1(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void Vid_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
+        {
+            if (e.newState == 2) Application.Exit();
         }
     }
 }
