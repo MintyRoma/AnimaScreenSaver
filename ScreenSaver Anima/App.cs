@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace ScreenSaver_Anima
 {
@@ -12,6 +13,7 @@ namespace ScreenSaver_Anima
     {
         public static MODE mode = MODE.Play;
         public const int BUILD = 23;
+        string path = "";
         [STAThread]
         static void Main(string[] args)
         {
@@ -33,6 +35,7 @@ namespace ScreenSaver_Anima
 
         public App()
         {
+           
             if (mode == MODE.Setup)
             {
                 Setup st = new Setup();
@@ -40,27 +43,21 @@ namespace ScreenSaver_Anima
             }
             if (mode == MODE.Play)
             {
+                Cursor.Hide();
                 Tools.GetData();
-                Random rnd = new Random();
-                string path = Tools.Videos[rnd.Next(Tools.Videos.Count)];
+                Tools.GenerateRandom();
+                path = Tools.Video;
+                List<WMP> wmps = new List<WMP>();
                 foreach (Screen scr in Screen.AllScreens)
                 {
-                    WMP frm = new WMP(scr, path);
-                    frm.Show();
+                    WMP wm = new WMP(scr,path);
+                    wm.Show();
+                    wmps.Add(wm);
                 }
-                List<WMP> frms = new List<WMP>();
-                foreach (Form frm in Application.OpenForms)
+                foreach (WMP wm in wmps)
                 {
-                    if (frm is WMP)
-                    {
-                        frms.Add((WMP)frm);
-                    }
+                    wm.Play();
                 }
-                foreach (WMP act in frms)
-                {
-                    act.Play();
-                }
-
             }
             if (mode == MODE.Test)
             {

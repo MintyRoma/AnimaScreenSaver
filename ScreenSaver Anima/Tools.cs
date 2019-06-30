@@ -12,6 +12,7 @@ namespace ScreenSaver_Anima
         private static List<string> videos = new List<string>();
         private static int volume = 50;
         private static bool allowkeys = false;
+        private static string video = "";
 
 
         public static void GetData()
@@ -20,6 +21,12 @@ namespace ScreenSaver_Anima
             videos = InitVideos();
             volume = InitVolume();
             allowkeys = InitAllow();
+        }
+
+        public static void GenerateRandom()
+        {
+            Random rnd = new Random();
+            video = videos[rnd.Next(videos.Count)];
         }
 
         public static void SetData(List<string> vids, int vol, bool allowkey)
@@ -198,6 +205,11 @@ namespace ScreenSaver_Anima
             get { return allowkeys; }
             set { allowkeys = value; }
         }
+        public static string Video
+        {
+            get { return video; }
+        }
+
         
     }
 }
