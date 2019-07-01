@@ -97,8 +97,8 @@ namespace ScreenSaver_Anima
             if (e.newState == 2) Application.Exit();
             if (e.newState==8)
             {
-                Tools.GenerateRandom();
-                vid.URL=Tools.Video;
+                //Tools.GenerateRandom();
+                //vid.URL=Tools.Video;
                 vid.Ctlcontrols.currentPosition = 0;
                 vid.Ctlcontrols.play();
             }

@@ -12,7 +12,7 @@ namespace ScreenSaver_Anima
     public class App : ApplicationContext
     {
         public static MODE mode = MODE.Play;
-        public const int BUILD = 23;
+        public const int BUILD = 30;
         string path = "";
         [STAThread]
         static void Main(string[] args)

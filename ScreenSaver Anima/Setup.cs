@@ -13,19 +13,40 @@ namespace ScreenSaver_Anima
 {
     public partial class Setup : Form
     {
-       const  int guiversion = 1;
-        List<string> vids;
+        private const  int guiversion = 4;
+        private bool edited = false;
+        private List<string> vids;
+        private delegate void SMTChngd();
+        private event SMTChngd SomethingChanged;
+
+        private bool Edited
+        {
+            get { return edited; }
+            set { if (value != edited)
+                {
+                    edited = value;
+                    SomethingChanged();
+                }
+            }
+        }
         public Setup()
         {
             InitializeComponent();
 #if DEBUG
-            BUILDLABEL.Text = "Build №" + App.BUILD+"\ngui №"+guiversion;
+            BUILDLABEL.Text = "Build №" + App.BUILD+"\nGUI №"+guiversion;
 #endif
+            SomethingChanged += EnableConfirm;
             Tools.GetData();
             vids = Tools.Videos;
             AddVideos();
             EnableVolumeControlCB.Checked = Tools.AllowKeys;
             VolumeBar.Value = Tools.Volume;
+            VolumeLabel.Text = Convert.ToString(Tools.Volume);
+        }
+
+        private void EnableConfirm()
+        {
+            if(edited==true)ConfirmBtn.Enabled = true;
         }
 
         private void Setup_FormClosing(object sender, FormClosingEventArgs e)
@@ -43,14 +64,22 @@ namespace ScreenSaver_Anima
             vids = Tools.Videos;
             foreach (string vid in vids)
             {
-                if (!File.Exists(vid)) ;
+                if (!File.Exists(vid))
+                {
+                    ListViewItem item = new ListViewItem();
+                    item.BackColor = System.Drawing.Color.Red;
+                    item.ForeColor = System.Drawing.Color.White;
+                    item.Text = vid;
+                    AbouObject.Text = "Есть несуществующие объекты";
+                    AbouObject.ForeColor = System.Drawing.Color.Red;
+                    VideoList.Items.Add(item);
+                }
                 else VideoList.Items.Add(vid);
             }
         }
 
         private void BrowseVideo_Click(object sender, EventArgs e)
         {
-            string filepath = "";
             OpenFileDialog fd = new OpenFileDialog();
 
 
@@ -73,13 +102,7 @@ namespace ScreenSaver_Anima
                         AddVideos();
                     }
                 }
-            }
-
-
-            if (!vids.Contains(filepath))
-            {
-                vids.Add(filepath);
-                AddVideos();
+                Edited = true;
             }
 
         }
@@ -91,10 +114,10 @@ namespace ScreenSaver_Anima
 
         private void DeleteVideo_Click(object sender, EventArgs e)
         {
-            string selecttext = VideoList.GetItemText(VideoList.SelectedItem);
-            VideoList.Items.Remove(selecttext);
-            vids.Remove(selecttext);
-
+            ListViewItem selected = VideoList.SelectedItems[0];
+            VideoList.Items.Remove(selected);
+            vids.Remove(selected.Text);
+            Edited = true;
 
 
         }
@@ -109,17 +132,21 @@ namespace ScreenSaver_Anima
         {
             Tools.Volume = VolumeBar.Value;
             ToolTip tl = new ToolTip();
-            tl.SetToolTip(this.VolumeBar, @"Громкость: " + VolumeBar.Value);
+            VolumeLabel.Text = Convert.ToString(VolumeBar.Value);
+            Edited = true;
         }
 
         private void EnableVolumeControlCB_CheckedChanged(object sender, EventArgs e)
         {
             Tools.AllowKeys = EnableVolumeControlCB.Checked;
+            Edited = true;
         }
 
         private void ConfirmBtn_Click(object sender, EventArgs e)
         {
             Tools.SetData(vids, Tools.Volume, Tools.AllowKeys);
+            ConfirmBtn.Enabled = false;
+            edited = false;
         }
 
         private void CancelBtn_Click(object sender, EventArgs e)
