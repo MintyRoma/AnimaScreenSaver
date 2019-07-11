@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using System.Windows.Threading;
+using System.IO;
 
 namespace ScreenSaver_Anima
 {
@@ -20,6 +21,9 @@ namespace ScreenSaver_Anima
         public WMP(Screen sc,string path)
         {
             InitializeComponent();
+
+
+
             this.StartPosition = FormStartPosition.Manual;
             this.Location = sc.Bounds.Location;
             this.Size = sc.Bounds.Size;
@@ -35,6 +39,7 @@ namespace ScreenSaver_Anima
         public void Play()
         {
             vid.Ctlcontrols.play();
+
         }
 
         private void WMP_FormClosing(object sender, FormClosingEventArgs e)
@@ -59,7 +64,7 @@ namespace ScreenSaver_Anima
 
         private void Vid_KeyDownEvent(object sender, AxWMPLib._WMPOCXEvents_KeyDownEvent e)
         {
-            if (e.nKeyCode == 40) MessageBox.Show("DOWN ARROW");
+           Application.Exit();
         }
 
         private void Vid_MouseMoveEvent(object sender, AxWMPLib._WMPOCXEvents_MouseMoveEvent e)
@@ -75,6 +80,7 @@ namespace ScreenSaver_Anima
         private void Vid_MouseDownEvent(object sender, AxWMPLib._WMPOCXEvents_MouseDownEvent e)
         {
             Application.Exit();
+            
         }
 
         private void Vid_ClickEvent(object sender, AxWMPLib._WMPOCXEvents_ClickEvent e)
@@ -95,13 +101,23 @@ namespace ScreenSaver_Anima
         private void Vid_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
         {
             if (e.newState == 2) Application.Exit();
-            if (e.newState==8)
+            if (e.newState == 3) {
+#if DEBUG
+    debug.Text = "DEBUG label";
+#endif      
+            }
+            if (e.newState == 8)
             {
                 //Tools.GenerateRandom();
                 //vid.URL=Tools.Video;
-                vid.Ctlcontrols.currentPosition = 0;
-                vid.Ctlcontrols.play();
+                //  Application.Exit();
+
+                //  vid.Ctlcontrols.stop();
+
+                //    vid.Ctlcontrols.play();  
             }
+
+
         }
 
         private void WMP_MouseMove_1(object sender, MouseEventArgs e)
@@ -116,13 +132,20 @@ namespace ScreenSaver_Anima
 
         private void WMP_KeyDown_1(object sender, KeyEventArgs e)
         {
-            MessageBox.Show(e.KeyValue.ToString());
+            debug.Text = e.KeyValue.ToString();
+
         }
 
         private void Vid_KeyPressEvent(object sender, AxWMPLib._WMPOCXEvents_KeyPressEvent e)
         {
             if (e.nKeyAscii == 40) MessageBox.Show("DOWN ARROW");
         }
+
+        private void Vid_Enter(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 }
