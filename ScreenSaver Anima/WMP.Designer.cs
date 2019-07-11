@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WMP));
             this.vid = new AxWMPLib.AxWindowsMediaPlayer();
             this.debug = new System.Windows.Forms.Label();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.vid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,6 +64,12 @@
             this.debug.Size = new System.Drawing.Size(0, 46);
             this.debug.TabIndex = 1;
             // 
+            // timer
+            // 
+            this.timer.Enabled = true;
+            this.timer.Interval = 1;
+            this.timer.Tick += new System.EventHandler(this.Timer_Tick);
+            // 
             // WMP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -87,5 +95,6 @@
 
         private AxWMPLib.AxWindowsMediaPlayer vid;
         private System.Windows.Forms.Label debug;
+        private System.Windows.Forms.Timer timer;
     }
 }

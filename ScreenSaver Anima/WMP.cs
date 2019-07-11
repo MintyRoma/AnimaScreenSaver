@@ -14,7 +14,7 @@ namespace ScreenSaver_Anima
 {
     public partial class WMP : Form
     {
-
+        string pathh;
         private Point CursorPosition = new Point();
         public EventHandler PlayingChanged = delegate { };
         
@@ -28,16 +28,22 @@ namespace ScreenSaver_Anima
             this.Location = sc.Bounds.Location;
             this.Size = sc.Bounds.Size;
             //this.TopMost = true;
-            vid.Size = this.Size;
-            vid.Location = this.Location;
-            vid.settings.volume = Tools.Volume;
-            vid.URL = path;
+           
+            pathh = path;
+            
             if (sc != Screen.AllScreens[0]) vid.settings.volume = 0;
             CursorPosition = Cursor.Position;
+#if DEBUG
+            debug.Text = "DEBUG";
+#endif
         }
 
         public void Play()
         {
+            vid.Size = this.Size;
+            vid.Location = this.Location;
+            vid.settings.volume = Tools.Volume;
+            vid.URL = pathh;
             vid.Ctlcontrols.play();
 
         }
@@ -100,21 +106,21 @@ namespace ScreenSaver_Anima
 
         private void Vid_PlayStateChange(object sender, AxWMPLib._WMPOCXEvents_PlayStateChangeEvent e)
         {
+          
+
             if (e.newState == 2) Application.Exit();
-            if (e.newState == 3) {
-#if DEBUG
-    debug.Text = "DEBUG label";
-#endif      
-            }
             if (e.newState == 8)
             {
                 //Tools.GenerateRandom();
                 //vid.URL=Tools.Video;
-                //  Application.Exit();
 
-                //  vid.Ctlcontrols.stop();
+#if DEBUG
+                 debug.Text = "end video";
+#endif
+                vid.Ctlcontrols.stop();
+                Play();
+                
 
-                //    vid.Ctlcontrols.play();  
             }
 
 
@@ -146,6 +152,16 @@ namespace ScreenSaver_Anima
 
         }
 
-
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+#if DEBUG
+            if (vid.Ctlcontrols.currentPosition != Convert.ToDouble(0))
+            {
+                debug.Text = vid.Ctlcontrols.currentPosition.ToString();
+            }
+           
+#endif
+        
+        }
     }
 }
