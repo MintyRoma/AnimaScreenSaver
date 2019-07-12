@@ -33,6 +33,7 @@ namespace ScreenSaver_Anima
             
             if (sc != Screen.AllScreens[0]) vid.settings.volume = 0;
             CursorPosition = Cursor.Position;
+            Play();
 #if DEBUG
             debug.Text = "DEBUG";
 #endif
@@ -117,9 +118,11 @@ namespace ScreenSaver_Anima
 #if DEBUG
                  debug.Text = "end video";
 #endif
-                vid.Ctlcontrols.stop();
-                Play();
-                
+                vid.Size = this.Size;
+                vid.Location = this.Location;
+                vid.settings.volume = Tools.Volume;
+                vid.URL = pathh;
+                vid.Ctlcontrols.play();
 
             }
 
@@ -155,7 +158,7 @@ namespace ScreenSaver_Anima
         private void Timer_Tick(object sender, EventArgs e)
         {
 #if DEBUG
-            if (vid.Ctlcontrols.currentPosition != Convert.ToDouble(0))
+            if (vid.Ctlcontrols.currentPosition != 0)
             {
                 debug.Text = vid.Ctlcontrols.currentPosition.ToString();
             }

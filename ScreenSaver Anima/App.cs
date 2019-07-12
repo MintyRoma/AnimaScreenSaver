@@ -43,9 +43,10 @@ namespace ScreenSaver_Anima
             }
             if (mode == MODE.Play)
             {
-                Cursor.Hide();
+                
                 Tools.GetData();
                 Tools.GenerateRandom();
+                Cursor.Hide();
                 path = Tools.Video;
                 List<WMP> wmps = new List<WMP>();
                 foreach (Screen scr in Screen.AllScreens)
@@ -56,7 +57,7 @@ namespace ScreenSaver_Anima
                 }
                 foreach (WMP wm in wmps)
                 {
-                    wm.Play();
+               //     wm.Play(); //у меня если запускать сразу из WMP.cs получились меньшие задержки
                 }
             }
             if (mode == MODE.Test)
