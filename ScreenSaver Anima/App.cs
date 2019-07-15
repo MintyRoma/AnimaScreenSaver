@@ -55,14 +55,10 @@ namespace ScreenSaver_Anima
                     wm.Show();
                     wmps.Add(wm);
                 }
-                foreach (WMP wm in wmps)
-                {
-               //     wm.Play(); //у меня если запускать сразу из WMP.cs получились меньшие задержки
-                }
-            }
-            if (mode == MODE.Test)
-            {
-                videoplay vp = new videoplay();
+                //foreach (WMP wm in wmps)
+                //{
+                //    wm.Play(); //у меня если запускать сразу из WMP.cs получились меньшие задержки
+                //}
             }
         }
 

@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>ScreenSaver_Anima</RootNamespace>
     <AssemblyName>ScreenSaver Anima</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <PublishUrl>publish\</PublishUrl>
@@ -26,8 +26,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -72,7 +71,6 @@
   <ItemGroup>
     <Compile Include="App.cs" />
     <Compile Include="MODE.cs" />
-    <Compile Include="Player.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -91,7 +89,6 @@
       <DependentUpon>Setup.cs</DependentUpon>
     </Compile>
     <Compile Include="Tools.cs" />
-    <Compile Include="videoplay.cs" />
     <Compile Include="WMP.cs">
       <SubType>Form</SubType>
     </Compile>

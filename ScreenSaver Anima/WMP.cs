@@ -43,10 +43,8 @@ namespace ScreenSaver_Anima
         {
             vid.Size = this.Size;
             vid.Location = this.Location;
-            vid.settings.volume = Tools.Volume;
             vid.URL = pathh;
             vid.Ctlcontrols.play();
-
         }
 
         private void WMP_FormClosing(object sender, FormClosingEventArgs e)
@@ -116,14 +114,18 @@ namespace ScreenSaver_Anima
                 //vid.URL=Tools.Video;
 
 #if DEBUG
-                 debug.Text = "end video";
+                debug.Text = "end video";
 #endif
                 vid.Size = this.Size;
                 vid.Location = this.Location;
                 vid.settings.volume = Tools.Volume;
                 vid.URL = pathh;
+                vid.Ctlcontrols.stop();
+#if DEBUG
+                debug.Text = "Stopped";
+#endif
+                vid.Ctlcontrols.currentPosition = 0;
                 vid.Ctlcontrols.play();
-
             }
 
 

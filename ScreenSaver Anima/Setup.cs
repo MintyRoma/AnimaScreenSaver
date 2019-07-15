@@ -13,7 +13,7 @@ namespace ScreenSaver_Anima
 {
     public partial class Setup : Form
     {
-        private const  int guiversion = 4;
+        private const  int guiversion = 5;
         private bool edited = false;
         private List<string> vids;
         private delegate void SMTChngd();
@@ -49,6 +49,7 @@ namespace ScreenSaver_Anima
             if(edited==true)ConfirmBtn.Enabled = true;
         }
 
+
         private void Setup_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
@@ -62,6 +63,10 @@ namespace ScreenSaver_Anima
         {
             VideoList.Items.Clear();
             vids = Tools.Videos;
+            if (vids[0] == "")
+            {
+                vids.Remove(vids[0]);
+            }
             foreach (string vid in vids)
             {
                 if (!File.Exists(vid))
@@ -152,6 +157,18 @@ namespace ScreenSaver_Anima
         private void CancelBtn_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void VideoList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Delete)
+            {
+                if (VideoList.SelectedItems.Count == 0) return;
+                ListViewItem item = VideoList.SelectedItems[0];
+                VideoList.Items.Remove(item);
+                vids.Remove(item.Text);
+                Edited = true;
+            }
         }
     }
 }

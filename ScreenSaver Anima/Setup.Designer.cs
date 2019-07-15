@@ -33,15 +33,15 @@
             this.BrowseVideo = new System.Windows.Forms.Button();
             this.DeleteVideo = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.VolumeLabel = new System.Windows.Forms.Label();
             this.BUILDLABEL = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.AbouObject = new System.Windows.Forms.Label();
+            this.VideoList = new System.Windows.Forms.ListView();
+            this.Item = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.CancelBtn = new System.Windows.Forms.Button();
             this.ConfirmBtn = new System.Windows.Forms.Button();
             this.SaveBtn = new System.Windows.Forms.Button();
-            this.VolumeLabel = new System.Windows.Forms.Label();
-            this.VideoList = new System.Windows.Forms.ListView();
-            this.Item = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.AbouObject = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.VolumeBar)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -101,6 +101,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Громкость";
             // 
+            // VolumeLabel
+            // 
+            this.VolumeLabel.AutoSize = true;
+            this.VolumeLabel.Location = new System.Drawing.Point(312, 19);
+            this.VolumeLabel.Name = "VolumeLabel";
+            this.VolumeLabel.Size = new System.Drawing.Size(25, 13);
+            this.VolumeLabel.TabIndex = 2;
+            this.VolumeLabel.Text = "100";
+            // 
             // BUILDLABEL
             // 
             this.BUILDLABEL.AutoSize = true;
@@ -121,6 +130,36 @@
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Воспроизводимые видео";
+            // 
+            // AbouObject
+            // 
+            this.AbouObject.AutoSize = true;
+            this.AbouObject.Location = new System.Drawing.Point(6, 190);
+            this.AbouObject.Name = "AbouObject";
+            this.AbouObject.Size = new System.Drawing.Size(10, 13);
+            this.AbouObject.TabIndex = 6;
+            this.AbouObject.Text = " ";
+            // 
+            // VideoList
+            // 
+            this.VideoList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Item});
+            this.VideoList.GridLines = true;
+            this.VideoList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.VideoList.HideSelection = false;
+            this.VideoList.Location = new System.Drawing.Point(6, 15);
+            this.VideoList.MultiSelect = false;
+            this.VideoList.Name = "VideoList";
+            this.VideoList.Size = new System.Drawing.Size(250, 172);
+            this.VideoList.TabIndex = 5;
+            this.VideoList.UseCompatibleStateImageBehavior = false;
+            this.VideoList.View = System.Windows.Forms.View.Details;
+            this.VideoList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.VideoList_KeyDown);
+            // 
+            // Item
+            // 
+            this.Item.Text = "";
+            this.Item.Width = 260;
             // 
             // CancelBtn
             // 
@@ -152,44 +191,6 @@
             this.SaveBtn.Text = "Сохранить";
             this.SaveBtn.UseVisualStyleBackColor = true;
             this.SaveBtn.Click += new System.EventHandler(this.Button3_Click);
-            // 
-            // VolumeLabel
-            // 
-            this.VolumeLabel.AutoSize = true;
-            this.VolumeLabel.Location = new System.Drawing.Point(312, 19);
-            this.VolumeLabel.Name = "VolumeLabel";
-            this.VolumeLabel.Size = new System.Drawing.Size(25, 13);
-            this.VolumeLabel.TabIndex = 2;
-            this.VolumeLabel.Text = "100";
-            // 
-            // VideoList
-            // 
-            this.VideoList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Item});
-            this.VideoList.GridLines = true;
-            this.VideoList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.VideoList.HideSelection = false;
-            this.VideoList.Location = new System.Drawing.Point(6, 15);
-            this.VideoList.MultiSelect = false;
-            this.VideoList.Name = "VideoList";
-            this.VideoList.Size = new System.Drawing.Size(250, 172);
-            this.VideoList.TabIndex = 5;
-            this.VideoList.UseCompatibleStateImageBehavior = false;
-            this.VideoList.View = System.Windows.Forms.View.Details;
-            // 
-            // Item
-            // 
-            this.Item.Text = "";
-            this.Item.Width = 260;
-            // 
-            // AbouObject
-            // 
-            this.AbouObject.AutoSize = true;
-            this.AbouObject.Location = new System.Drawing.Point(6, 190);
-            this.AbouObject.Name = "AbouObject";
-            this.AbouObject.Size = new System.Drawing.Size(10, 13);
-            this.AbouObject.TabIndex = 6;
-            this.AbouObject.Text = " ";
             // 
             // Setup
             // 
